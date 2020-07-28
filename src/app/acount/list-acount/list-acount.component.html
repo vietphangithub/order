@@ -1,0 +1,49 @@
+
+<div class="pricing-header mx-auto">
+  <div class="row pt-3 pb-2 mb-3 border-bottom">
+    <div class="col-md-8"><h1 class="h2">List Account</h1></div>
+    <div class="col-md-4">
+      <select
+        (change)="filterGroup($event.target.value)"
+        [(ngModel)]="groupByGroupID"
+      >
+        <option value="0">--All--</option>
+        <option *ngFor="let group of Groups" value="{{ group.$key }}">
+          {{ group.groupName }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th style="width: 150px;" class="text-center">First Name</th>
+          <th scope="col" class="text-center">Last Name</th>
+          <th scope="col" class="text-center">Email</th>
+          <th scope="col" class="text-center">Phone</th>
+          <th scope="col" class="text-center">Group Name</th>
+          <th scope="col" class="text-center">Role Name</th>
+          <th class="text-center" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts">
+          <td>{{ account.firstName }}</td>
+          <td>{{ account.lastName }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.phone }}</td>
+          <td>{{ account.groupName }}</td>
+          <td>{{ account.roleID }}</td>
+          <td class="text-center action-block">
+            <i class="far fa-edit" (click)="onSelectAccount(account)"></i>
+            <i class="far fa-trash-alt"  (click)="onDeleteAccount(account)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

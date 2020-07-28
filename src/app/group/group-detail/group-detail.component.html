@@ -1,0 +1,80 @@
+<div class="row">
+  <!-- Group Start -->
+  <div class="col-sm-6">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Group</h1>
+    </div>
+
+    <form [formGroup]="groupForm" (ngSubmit)="submitGroupData()" novalidate>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label>Group Name</label>
+              <input
+                type="text"
+                formControlName="groupName"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="col-md-12 mb-3">
+              <label>Email</label>
+              <input type="text" formControlName="email" class="form-control" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label>Phone</label>
+              <input
+                type="email"
+                formControlName="phone"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label>Address</label>
+              <input
+                type="text"
+                formControlName="address"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="form-group text-right">
+            <button
+              type="button"
+              class="btn btn-secondary gap-right"
+              (click)="reset()"
+            >
+              Reset
+            </button>
+            <button type="submit" *ngIf="isAddGroup" class="btn btn-success">
+              Add
+            </button>
+            <button
+              type="button"
+              (click)="UpdateGroup()"
+              *ngIf="!isAddGroup"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- End Group -->
+
+  <!-- List Start -->
+  <div class="col-sm-6">
+    <app-list-group (messageEvent)="getGroupID($event)"> </app-list-group>
+  </div>
+</div>

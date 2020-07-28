@@ -1,0 +1,32 @@
+<div class="pricing-header mx-auto">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">List Group</h1>
+      </div>
+  <div class="table-responsive">
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th style="width: 150px;" class="text-center">Group Name</th>
+          <th scope="col" class="text-center">Email</th>
+          <th scope="col" class="text-center">Phone</th>
+          <th scope="col" class="text-center">Address</th>
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let group of listGroup"  >
+          <td>{{group.groupName}}</td>
+          <td>{{group.email}}</td>
+          <td>{{group.phone}}</td>
+          <td>{{group.address}}</td>
+          <td class="text-center action-block">
+            <i class="far fa-edit"  (click)="sendGroupID(group.$key)"></i>
+            <i class="far fa-trash-alt" (click)="onDeleteGroup(group)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

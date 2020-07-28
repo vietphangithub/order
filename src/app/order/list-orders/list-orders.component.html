@@ -1,0 +1,32 @@
+<div class="pricing-header mx-auto">
+  <div class="table-responsive">
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Order Name</th>
+          <th scope="col">Created By</th>
+          <th scope="col">Created Date</th>
+          <th class="text-center" scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.nameOrder }}</td>
+          <td>{{ order.createdBy }}</td>
+          <td>{{ order.createdDate }}</td>
+          <td class="text-center action-block">
+            <i
+              class="far fa-edit"
+              routerLink="/edit-order/{{ order.$key }}"
+            ></i>
+            <i class="far fa-trash-alt" (click)="deleteOrder(order)"></i>
+          <a class="nav-link" routerLink="/order-detail/{{order.$key}}" routerLinkActive="active">
+                Go</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

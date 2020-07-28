@@ -1,0 +1,146 @@
+<div class="container col-12">
+  <div class="row">
+    <div class="col-6">
+      <iframe
+        [src]="urlOrder | safe"
+        height="700px"
+        width="100%"
+        title="Iframe Example"
+      ></iframe>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Food</th>
+              <th scope="col">Price</th>
+              <th scope="col">Pay</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let orderDetail of OrderDetails; let i = index;"
+              [class.active]="i == selectedRow"
+              matSortChange
+              (click)="onSelectOrder(orderDetail)"
+            >
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ orderDetail.userName }}</td>
+              <td>{{ orderDetail.foodName }}</td>
+              <td>{{ orderDetail.price | currency: "VND"}}</td>
+              <td>{{ orderDetail.price * ( 1 - order.discount / 100) | currency: "VND"}}</td>
+              <td class="text-center action-block">
+                <i class="far fa-edit" (click)="onSelectOrder(orderDetail)"></i>
+                <i class="far fa-trash-alt" (click)="onDeleteOrder(orderDetail)"></i>
+              </td>
+            </tr>
+
+            <tr [hidden]="OrderDetails.length == 0">
+              <td></td>
+              <td></td>
+              <td><b>Total</b></td>
+              <td>
+                <b>{{ total | currency: "VND"}}</b>
+              </td>
+              <td>
+                <b>{{total - discount | currency: "VND"}}</b> 
+              </td>
+              <td>
+                <b>{{discount | currency: "VND"}}</b>
+              </td>
+            </tr>
+         
+           
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <form
+            [formGroup]="orderDetailForm"
+            (ngSubmit)="submitOrderDetailData()"
+          >
+            <div [hidden]="true" class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="orderID"
+              />
+            </div>
+            <div [hidden]="true" class="form-group">
+              <input type="text" class="form-control" formControlName="$key" />
+            </div>
+            <div class="form-group">
+              <label>Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="userName"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Food</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="foodName"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Price</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="price"
+              />
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-secondary gap-right"
+              (click)="ResetForm()"
+            >
+              Reset
+            </button>
+            <button type="submit" [hidden]="!isAdd" class="btn btn-success">
+              Add
+            </button>
+
+            <button
+              type="button"
+              [hidden]="isAdd"
+              class="btn btn-success"
+              (click)="UpdateOrderDetail()"
+            >
+              Update
+            </button>
+          </form>
+        </div>
+        <div class="col-8">
+          <table class="table" [hidden]="OrderDetails.length == 0">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Food</th>
+                <th scope="col">Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of groupOrders; ; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ order.foodName }}</td>
+                <td>{{ order.count }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
