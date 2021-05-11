@@ -24,7 +24,7 @@
     "angularfire2": "^5.4.2",
     "bootstrap": "^4.5.0",
     "firebase": "^7.15.5",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^12.1.0",
     "rxjs": "~6.5.5",
